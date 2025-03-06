@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-nmbr = 98
-print(f"{nmbr} Battery street")
+number = 98
+print(f"{number} Battery street") if isinstance(number, (int, float)) else None
