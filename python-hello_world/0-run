@@ -1,0 +1,2 @@
+#!/bin/bash
+[ -f "$PYFILE" ] || touch "$PYFILE"; python3 "$PYFILE"
