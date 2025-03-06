@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 def print_alphabet():
-    for i in range(25, -1, -1):
+    for i in range(26):
+        char = chr(122 - i)
         if i % 2 == 0:
-            print("{}".format(chr(122 - i)), end="")
+            print("{}".format(char), end="")
         else:
-            print("{}".format(chr(122 - i).upper()), end="")
+            print("{}".format(char.upper()), end="")
