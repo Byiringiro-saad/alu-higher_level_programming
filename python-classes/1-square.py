@@ -10,10 +10,6 @@ This implementation does not perform any type or value verification.
 class Square:
     """
     A class that represents a square.
-
-    The class has a private instance attribute `size` which defines
-    the size of the square. There is no type or value verification 
-    implemented for the size attribute.
     """
 
     def __init__(self, size):
