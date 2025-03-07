@@ -7,6 +7,7 @@ and setters. It also provides methods to calculate the area of the
 square and to print the square to the screen, considering the position.
 """
 
+
 class Square:
     """
     A class that represents a square.
