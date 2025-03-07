@@ -8,6 +8,7 @@ and greater than or equal to 0. A property is used to manage the
 `size` attribute.
 """
 
+
 class Square:
     """
     A class that represents a square.
