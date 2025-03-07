@@ -6,6 +6,7 @@ have any properties or methods. It serves as a placeholder for further
 implementation of square-related functionality.
 """
 
+
 class Square:
     """
     A class that represents a square.
