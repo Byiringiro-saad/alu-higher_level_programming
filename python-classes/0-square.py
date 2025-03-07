@@ -10,9 +10,5 @@ implementation of square-related functionality.
 class Square:
     """
     A class that represents a square.
-
-    Currently, this class does not have any attributes or methods. 
-    It serves as a placeholder for future expansion where square-related 
-    functionality can be implemented.
     """
     pass
