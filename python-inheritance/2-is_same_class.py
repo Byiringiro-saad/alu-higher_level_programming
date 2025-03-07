@@ -12,6 +12,7 @@ def is_same_class(obj, a_class):
     """
     return type(obj) is a_class
 
+
 class MyList(list):
     """
     A subclass of list that list in sorted order.
