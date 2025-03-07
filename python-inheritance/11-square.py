@@ -4,8 +4,8 @@
 This module defines the Square class that Rectangle.
 """
 
-
 Rectangle = __import__('9-rectangle').Rectangle
+
 
 class Square(Rectangle):
     """A class representing a from Rectangle."""
