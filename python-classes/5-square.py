@@ -12,11 +12,6 @@ greater than or equal to 0.
 class Square:
     """
     A class that represents a square.
-
-    The class has a private instance attribute `size` which defines
-    the size of the square. The `size` must be an integer and greater
-    than or equal to 0. The class includes methods to calculate the area
-    of the square and to print the square using the '#' character.
     """
 
     def __init__(self, size=0):
