@@ -6,6 +6,7 @@ It includes property getters and setters to ensure that:
 - 'width' and 'height' must be greater than or equal to zero.
 """
 
+
 class Rectangle:
     """
     A class to define a rectangle by its width and height.
