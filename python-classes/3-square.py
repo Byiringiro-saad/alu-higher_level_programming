@@ -3,7 +3,7 @@
 """
 This module defines a class called Square. The class has a private
 instance attribute `size` and a public instance method `area` to
-calculate the area of the square. The `size` must be an integer 
+calculate the area of the square. The `size` must be an integer
 and greater than or equal to 0.
 """
 
