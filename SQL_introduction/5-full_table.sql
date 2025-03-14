@@ -1,7 +1,14 @@
--- This script prints the full description of the first_table in the hbtn_0c_0 database
--- The database name will be passed as an argument of the mysql command
+-- This script creates the table 'first_table' in the database 'hbtn_0c_0'
+-- and then displays its full description using SHOW CREATE TABLE.
 
-SELECT `Create Table` 
-FROM information_schema.tables 
-WHERE table_name = 'first_table' 
-AND table_schema = 'hbtn_0c_0';
+-- Step 1: Create the table if it doesn't already exist
+CREATE TABLE IF NOT EXISTS first_table (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(128) DEFAULT NULL,
+    c CHAR(1) DEFAULT NULL,
+    created_at DATE DEFAULT NULL,
+    PRIMARY KEY (id)
+);
+
+-- Step 2: Display the full description of the table
+SHOW CREATE TABLE first_table\G;
