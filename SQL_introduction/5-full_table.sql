@@ -1,5 +1,22 @@
--- This script prints the full description of the table first_table from the given database
+-- This script generates the CREATE TABLE syntax for the table 'first_table'
 
-SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA
+SELECT 
+    CONCAT(
+        'CREATE TABLE `', TABLE_NAME, '` (', GROUP_CONCAT(
+            CONCAT(
+                '`', COLUMN_NAME, '` ', COLUMN_TYPE,
+                IF(IS_NULLABLE = 'NO', ' NOT NULL', ''),
+                IF(COLUMN_DEFAULT IS NOT NULL, CONCAT(' DEFAULT ', COLUMN_DEFAULT), ''),
+                IF(EXTRA != '', CONCAT(' ', EXTRA), '')
+            ) 
+            ORDER BY ORDINAL_POSITION SEPARATOR ', '
+        ), ', PRIMARY KEY(`id`)', ') ENGINE=', ENGINE, 
+        ' DEFAULT CHARSET=', TABLE_COLLATION
+    ) AS create_table_query
 FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'first_table';
+JOIN INFORMATION_SCHEMA.TABLES 
+    ON COLUMNS.TABLE_NAME = TABLES.TABLE_NAME 
+    AND COLUMNS.TABLE_SCHEMA = TABLES.TABLE_SCHEMA
+WHERE COLUMNS.TABLE_SCHEMA = DATABASE() 
+  AND COLUMNS.TABLE_NAME = 'first_table'
+GROUP BY COLUMNS.TABLE_NAME, ENGINE, TABLE_COLLATION;
