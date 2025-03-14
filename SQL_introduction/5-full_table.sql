@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS first_table (
 );
 
 -- Step 2: Display the full description of the table in the required form
-SELECT REPLACE(REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX((SELECT CREATE_TABLE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'first_table' AND TABLE_SCHEMA = 'hbtn_0c_0'),'CREATE TABLE', -1),'\n', ''), '  ', ''), 'Table:', '') AS TableDescription;
+SELECT REPLACE(REPLACE(SUBSTRING_INDEX(SUBSTRING_INDEX((SELECT CREATE_TABLE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'first_table'),'CREATE TABLE', -1),'\n', ''), '  ', ''), 'Table:', '') AS TableDescription;
