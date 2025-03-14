@@ -11,14 +11,4 @@ CREATE TABLE IF NOT EXISTS first_table (
 );
 
 -- Step 2: Display the full description of the table in the required form
-SELECT 
-    REPLACE(
-        REPLACE(
-            REPLACE(
-                (SELECT CREATE_TABLE 
-                 FROM INFORMATION_SCHEMA.TABLES 
-                 WHERE TABLE_NAME = 'first_table' 
-                 AND TABLE_SCHEMA = 'hbtn_0c_0'), 
-            'CREATE TABLE', ''), 
-        'Table:', ''), 
-    '\n', '') AS TableDescription;
+SELECT REPLACE(REPLACE(REPLACE((SELECT CREATE_TABLE FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'first_table'),'CREATE TABLE', ''),'Table:', ''),'\n', '') AS TableDescription;
