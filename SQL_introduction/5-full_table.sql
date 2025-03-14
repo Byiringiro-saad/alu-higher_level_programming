@@ -1,10 +1,6 @@
--- This script prints the full description of the table 'first_table' from the given database
+-- This script prints the full description of the 'first_table' from the database hbtn_0c_0
 
-SELECT 
-    COLUMN_NAME, 
-    COLUMN_TYPE, 
-    IS_NULLABLE, 
-    COLUMN_DEFAULT, 
-    EXTRA
-FROM INFORMATION_SCHEMA.COLUMNS
-WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'first_table';
+SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA
+FROM information_schema.columns
+WHERE table_name = 'first_table'
+  AND table_schema = DATABASE();
