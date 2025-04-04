@@ -1,4 +1,8 @@
-# test.py
+#!/usr/bin/python3
+"""
+This is the "tests/0-add_integer.txt"
+The add_integer function adds two integers and returns the result.
+"""
 
 Base = __import__('models/base').Base
 
