@@ -102,5 +102,16 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             rectangle.y = -5
 
+    def test_invalid_x_type_string(self):
+        """Test passing a string as x should raise ValueError"""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 2, "3")
+
+    def test_invalid_y_type_string(self):
+        """Test passing a string as y should raise ValueError"""
+        with self.assertRaises(ValueError):
+            Rectangle(1, 2, 3, "4")
+
+
 if __name__ == "__main__":
     unittest.main()
