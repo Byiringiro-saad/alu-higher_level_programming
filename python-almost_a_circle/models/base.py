@@ -1,24 +1,34 @@
 #!/usr/bin/python3
-
-"""Base class for all other classes in the project.
-This class manages id attribute for all classes.
-It also keeps track of the number of instances created.
+"""
+Base module for managing the id attribute.
+This module contains the Base class which is responsible
+for handling the management of the id attribute in the 
+future classes.
 """
 
 
 class Base:
-    # Private class attribute to keep track of the number of instances
+    """
+    Base class for managing the 'id' attribute in future
 
-    """Private class attribute to keep track of the numberof instances"""
+    Attributes:
+        __nb_objects (int): Private class attribute to keep
 
+    Methods:
+        __init__(self, id=None): Constructor to initialize
+    """
     __nb_objects = 0
 
     def __init__(self, id=None):
         """
-        Constructor for the Base class.
+        Initializes the Base instance with an id.
 
-        If id is provided, assigns it to the instance.
-        Otherwise, increments __nb_objects and assigns the new value to id.
+        If the 'id' argument is provided, assigns it to the instance.
+        Otherwise, increments the class attribute '__nb_objects'
+        the new value as the 'id'.
+
+        Args:
+            id (int, optional): The id value to assign to the.
         """
         if id is not None:
             self.id = id
