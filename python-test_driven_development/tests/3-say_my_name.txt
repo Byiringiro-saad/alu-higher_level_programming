@@ -1,10 +1,10 @@
 """
-This is the "tests/2-say_my_name.txt" file for testing the say_my_name function.
+This is the "tests/3-say_my_name.txt" file for testing the say_my_name function.
 
 The say_my_name function prints "My name is <first name> <last name>".
 """
 
->>> say_my_name = __import__('2-say_my_name').say_my_name
+>>> say_my_name = __import__('3-say_my_name').say_my_name
 
 # Test with first and last name
 >>> say_my_name("John", "Smith")
