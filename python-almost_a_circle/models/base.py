@@ -1,9 +1,16 @@
 #!/usr/bin/python3
 
-"""Base class for all other classes in the project."""
+"""Base class for all other classes in the project.
+This class manages id attribute for all classes.
+It also keeps track of the number of instances created.
+"""
 
 class Base:
     # Private class attribute to keep track of the number of instances
+
+    """Private class attribute to keep track of the numberof instances"""
+
+
     __nb_objects = 0
 
     def __init__(self, id=None):
