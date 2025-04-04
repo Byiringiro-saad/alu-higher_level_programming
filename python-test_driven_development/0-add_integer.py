@@ -46,7 +46,7 @@ def add_integer(a, b=98):
         a != a or a == float('inf') or a == float('-inf')
     ):
         raise ValueError("a cannot be converted to an integer")
-    
+
     if isinstance(b, float) and (
         b != b or b == float('inf') or b == float('-inf')
     ):
