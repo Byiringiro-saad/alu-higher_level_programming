@@ -1,4 +1,6 @@
-# models/base.py
+#!/usr/bin/python3
+
+"""Base class for all other classes in the project."""
 
 class Base:
     # Private class attribute to keep track of the number of instances
