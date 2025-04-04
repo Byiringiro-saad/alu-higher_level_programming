@@ -1,24 +1,24 @@
 #!/usr/bin/python3
 """
-This module contains a function that divides all elements
-The matrix is a list of lists of integers or floats,
+This module contains a function that divides all
+The matrix is a list of lists of integers or floats
 The function raises errors if the input is invalid,
 """
 
 
 def matrix_divided(matrix, div):
     """
-    Divides all elements of a matrix by a number,
+    Divides all elements of a matrix by a number, rounding
 
     Parameters:
-    matrix (list of lists): The matrix (list of list
-    div (int or float): The divisor (must be a number and
+    matrix (list of lists): The matrix (list of lists) to be divided.
+    div (int or float): The divisor (must be a number and not zero).
 
     Returns:
-    list of lists: A new matrix with each element divided by
+    list of lists: A new matrix with each element divided
 
     Raises:
-    TypeError: If matrix is not a list of lists of integers or
+    TypeError: If matrix is not a list of lists of integers
     TypeError: If div is not a number.
     ZeroDivisionError: If div is zero.
 
@@ -34,7 +34,7 @@ def matrix_divided(matrix, div):
     >>> matrix_divided([[1, "2"], [3, 4]], 2)
     Traceback (most recent call last):
         ...
-    TypeError: matrix must be a matrix (list of lists)
+    TypeError: matrix must be a matrix (list of lists) of integers/floats
     >>> matrix_divided([[1, 2], [3]], 2)
     Traceback (most recent call last):
         ...
@@ -61,5 +61,21 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # Divide each element of the matrix by div and round to 2 decimal places
-    return [[round(elem / div, 2) for elem in row] for row in matrix]
+    # Check for float inf or nan values
+    if div == float('inf') or div == float('-inf') or div != div:
+        raise TypeError("div must be a number")
+
+    # Handle the case when matrix contains inf or nan values
+    result_matrix = []
+    for row in matrix:
+        result_row = []
+        for elem in row:
+            if elem == float('inf') or elem == float('-inf'):
+                result_row.append(0.0)
+            elif elem != elem:  # check for NaN
+                result_row.append(0.0)
+            else:
+                result_row.append(round(elem / div, 2))
+        result_matrix.append(result_row)
+
+    return result_matrix
