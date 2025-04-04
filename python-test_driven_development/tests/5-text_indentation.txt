@@ -1,0 +1,74 @@
+"""
+This is the "tests/5-text_indentation.txt" file for testing the
+text_indentation function.
+
+The text_indentation function prints a text with 2 new lines after
+each of these characters: '.', '?' and ':'.
+"""
+
+>>> text_indentation = __import__('5-text_indentation').text_indentation
+
+# Test with a normal text containing special characters
+>>> text_indentation("Hello. How are you? I am fine: thanks.")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I am fine:
+<BLANKLINE>
+thanks.
+<BLANKLINE>
+
+# Test with special characters at the beginning
+>>> text_indentation(". ? :")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+
+# Test with multiple spaces between words and after special characters
+>>> text_indentation("Hello.   How are you?    Fine:   thanks")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+Fine:
+<BLANKLINE>
+thanks
+
+# Test with no special characters
+>>> text_indentation("Hello world")
+Hello world
+
+# Test with empty string
+>>> text_indentation("")
+
+# Test with special characters only
+>>> text_indentation(".?:")
+.
+<BLANKLINE>
+?
+<BLANKLINE>
+:
+<BLANKLINE>
+
+# Test with spaces before and after text
+>>> text_indentation("   Hello.   ")
+   Hello.
+<BLANKLINE>
+
+# Test with non-string input
+>>> try:
+...     text_indentation(123)
+... except Exception as e:
+...     print(e)
+text must be a string
+
+# Test with None
+>>> try:
+...     text_indentation(None)
+... except Exception as e:
+...     print(e)
+text must be a string

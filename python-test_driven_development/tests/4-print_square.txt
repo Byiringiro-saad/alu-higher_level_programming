@@ -1,0 +1,69 @@
+"""
+This is the "tests/4-print_square.txt" file for testing the print_square function.
+
+The print_square function prints a square with the character #.
+"""
+
+>>> print_square = __import__('4-print_square').print_square
+
+# Test with size 4
+>>> print_square(4)
+####
+####
+####
+####
+
+# Test with size 10
+>>> print_square(10)
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+##########
+
+# Test with size 0
+>>> print_square(0)
+
+# Test with size 1
+>>> print_square(1)
+#
+
+# Test with negative size
+>>> try:
+...     print_square(-1)
+... except Exception as e:
+...     print(e)
+size must be >= 0
+
+# Test with non-integer size
+>>> try:
+...     print_square("Hello")
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+# Test with float size
+>>> try:
+...     print_square(5.5)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+# Test with negative float size
+>>> try:
+...     print_square(-5.5)
+... except Exception as e:
+...     print(e)
+size must be an integer
+
+# Test with None
+>>> try:
+...     print_square(None)
+... except Exception as e:
+...     print(e)
+size must be an integer
