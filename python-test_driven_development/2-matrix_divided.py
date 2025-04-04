@@ -41,11 +41,11 @@ def matrix_divided(matrix, div):
     TypeError: Each row of the matrix must have the same size
     """
 
+    error = "matrix must be a matrix (list of lists) of integers/floats"
     # Check if matrix is a list of lists of integers or floats
     if not isinstance(matrix, list) or not all(
             isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) "
-                         "of integers/floats")
+        raise TypeError(error)
 
     # Check if all rows of the matrix have the same size
     row_length = len(matrix[0])
@@ -53,8 +53,7 @@ def matrix_divided(matrix, div):
         if len(row) != row_length:
             raise TypeError("Each row of the matrix must have the same size")
         if not all(isinstance(elem, (int, float)) for elem in row):
-            raise TypeError("matrix must be a matrix (list of lists) "
-                             "of integers/floats")
+            raise TypeError(error)
 
     # Check if div is a number (int or float)
     if not isinstance(div, (int, float)):
@@ -64,8 +63,8 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # Check for float inf or nan values
-    if div == float('inf') or div == float('-inf') or div != div:
+    # Handle the case when div is infinity or NaN
+    if div == float('inf') or div == float('-inf') or div != div:  # NaN check
         raise TypeError("div must be a number")
 
     # Handle the case when matrix contains inf or nan values
@@ -75,7 +74,7 @@ def matrix_divided(matrix, div):
         for elem in row:
             if elem == float('inf') or elem == float('-inf'):
                 result_row.append(0.0)
-            elif elem != elem:  # check for NaN
+            elif elem != elem:  # Check for NaN
                 result_row.append(0.0)
             else:
                 result_row.append(round(elem / div, 2))
