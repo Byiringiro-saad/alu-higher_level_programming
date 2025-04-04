@@ -8,6 +8,7 @@ and setter methods to protect and validate these attributes.
 
 from models.base import Base
 
+
 class Rectangle(Base):
     """
     Rectangle class that inherits from Base and represents.
