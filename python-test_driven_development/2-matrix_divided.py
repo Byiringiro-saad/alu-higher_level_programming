@@ -63,10 +63,6 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    # Handle the case when div is infinity or NaN
-    if div == float('inf') or div == float('-inf') or div != div:  # NaN check
-        raise TypeError("div must be a number")
-
     # Handle the case when matrix contains inf or nan values
     result_matrix = []
     for row in matrix:
