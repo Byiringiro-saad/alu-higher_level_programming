@@ -1,24 +1,24 @@
 #!/usr/bin/python3
 """
 This module contains a function that divides all
-The matrix is a list of lists of integers or floats
-The function raises errors if the input is invalid,
+The matrix is a list of lists of integers or floats.
+The function raises errors if the input is invalid.
 """
 
 
 def matrix_divided(matrix, div):
     """
-    Divides all elements of a matrix by a number, rounding
+    Divides all elements of a matrix by a number, rounding.
 
     Parameters:
-    matrix (list of lists): The matrix (list of lists) to be divided.
-    div (int or float): The divisor (must be a number and not zero).
+    matrix (list of lists): The matrix (list of lists).
+    div (int or float): The divisor.
 
     Returns:
-    list of lists: A new matrix with each element divided
+    list of lists: A new matrix with each element divided.
 
     Raises:
-    TypeError: If matrix is not a list of lists of integers
+    TypeError: If matrix is not a list of lists of integers.
     TypeError: If div is not a number.
     ZeroDivisionError: If div is zero.
 
@@ -42,8 +42,10 @@ def matrix_divided(matrix, div):
     """
 
     # Check if matrix is a list of lists of integers or floats
-    if not isinstance(matrix, list) or not all(isinstance(row, list) for row in matrix):
-        raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+    if not isinstance(matrix, list) or not all(
+            isinstance(row, list) for row in matrix):
+        raise TypeError("matrix must be a matrix (list of lists) "
+                         "of integers/floats")
 
     # Check if all rows of the matrix have the same size
     row_length = len(matrix[0])
@@ -51,7 +53,8 @@ def matrix_divided(matrix, div):
         if len(row) != row_length:
             raise TypeError("Each row of the matrix must have the same size")
         if not all(isinstance(elem, (int, float)) for elem in row):
-            raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
+            raise TypeError("matrix must be a matrix (list of lists) "
+                             "of integers/floats")
 
     # Check if div is a number (int or float)
     if not isinstance(div, (int, float)):
