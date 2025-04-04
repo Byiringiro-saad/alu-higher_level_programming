@@ -42,9 +42,14 @@ def add_integer(a, b=98):
         raise TypeError("b must be an integer")
 
     # Handle NaN or infinity floats
-    if isinstance(a, float) and (a != a or a == float('inf') or a == float('-inf')):
+    if isinstance(a, float) and (
+        a != a or a == float('inf') or a == float('-inf')
+    ):
         raise ValueError("a cannot be converted to an integer")
-    if isinstance(b, float) and (b != b or b == float('inf') or b == float('-inf')):
+    
+    if isinstance(b, float) and (
+        b != b or b == float('inf') or b == float('-inf')
+    ):
         raise ValueError("b cannot be converted to an integer")
 
     # Cast floats to integers
