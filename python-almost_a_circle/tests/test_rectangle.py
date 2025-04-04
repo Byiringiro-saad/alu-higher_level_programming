@@ -112,6 +112,46 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError):
             Rectangle(1, 2, 3, "4")
 
+    def test_width_type_error(self):
+        with self.assertRaises(TypeError) as e:
+            Rectangle("10", 2)
+        self.assertEqual(str(e.exception), "width must be an integer")
+
+    def test_height_type_error(self):
+        with self.assertRaises(TypeError) as e:
+            Rectangle(10, "2")
+        self.assertEqual(str(e.exception), "height must be an integer")
+
+    def test_x_type_error(self):
+        with self.assertRaises(TypeError) as e:
+            Rectangle(10, 2, "3")
+        self.assertEqual(str(e.exception), "x must be an integer")
+
+    def test_y_type_error(self):
+        with self.assertRaises(TypeError) as e:
+            Rectangle(10, 2, 3, "4")
+        self.assertEqual(str(e.exception), "y must be an integer")
+
+    def test_width_value_error(self):
+        with self.assertRaises(ValueError) as e:
+            Rectangle(0, 2)
+        self.assertEqual(str(e.exception), "width must be > 0")
+
+    def test_height_value_error(self):
+        with self.assertRaises(ValueError) as e:
+            Rectangle(10, -2)
+        self.assertEqual(str(e.exception), "height must be > 0")
+
+    def test_x_value_error(self):
+        with self.assertRaises(ValueError) as e:
+            Rectangle(10, 2, -3, 0)
+        self.assertEqual(str(e.exception), "x must be >= 0")
+
+    def test_y_value_error(self):
+        with self.assertRaises(ValueError) as e:
+            Rectangle(10, 2, 0, -4)
+        self.assertEqual(str(e.exception), "y must be >= 0")
+
 
 if __name__ == "__main__":
     unittest.main()
