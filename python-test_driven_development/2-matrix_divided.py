@@ -63,17 +63,23 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
+    # Handle the case when div is infinity or NaN
+    if div == float('inf') or div == float('-inf') or div != div:
+        pass
+
     # Handle the case when matrix contains inf or nan values
     result_matrix = []
     for row in matrix:
         result_row = []
         for elem in row:
+            # Handle elements that are inf or nan
             if elem == float('inf') or elem == float('-inf'):
-                result_row.append(0.0)
+                result_row.append(0.0)  # Replace infinity with 0.0
             elif elem != elem:  # Check for NaN
-                result_row.append(0.0)
+                result_row.append(0.0)  # Replace NaN with 0.0
             else:
                 result_row.append(round(elem / div, 2))
+
         result_matrix.append(result_row)
 
     return result_matrix
