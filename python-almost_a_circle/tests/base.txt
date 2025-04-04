@@ -1,6 +1,6 @@
 # test.py
 
-Base = __import__('models/base').max_integer
+Base = __import__('models/base').Base
 
 # Create an instance without passing an id
 b1 = Base()
