@@ -1,0 +1,92 @@
+"""
+This is the "tests/6-matrix_divided.txt" file for testing the matrix_divided function.
+
+The matrix_divided function divides all elements of a matrix by a number.
+It raises errors for invalid inputs, such as dividing by zero or invalid matrix structures.
+"""
+
+>>> matrix_divided = __import__('6-matrix_divided').matrix_divided
+
+# Test with a matrix of integers and integer divisor
+>>> matrix_divided([[1, 2], [3, 4]], 2)
+[[0.5, 1.0], [1.5, 2.0]]
+
+# Test with a matrix of integers and string divisor
+>>> try:
+...     matrix_divided([[1, 2], [3, 4]], "string")
+... except Exception as e:
+...     print(e)
+div must be a number
+
+# Test with a matrix of integers and divisor 0 (ZeroDivisionError)
+>>> try:
+...     matrix_divided([[1, 2], [3, 4]], 0)
+... except Exception as e:
+...     print(e)
+division by zero
+
+# Test with a matrix that is not a list of lists of integers/floats
+>>> try:
+...     matrix_divided([[1, "2"], [3, 4]], 2)
+... except Exception as e:
+...     print(e)
+matrix must be a matrix (list of lists) of integers/floats
+
+# Test with a non-rectangular matrix (rows of unequal lengths)
+>>> try:
+...     matrix_divided([[1, 2], [3]], 2)
+... except Exception as e:
+...     print(e)
+Each row of the matrix must have the same size
+
+# Test with a matrix of integers and a float divisor (infinity)
+>>> matrix_divided([[1, 2], [3, 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+# Test with a matrix of integers and one element as NaN (divisor is integer)
+>>> matrix_divided([[1, 2], [float('nan'), 4]], 2)
+[[0.5, 1.0], [0.0, 2.0]]
+
+# Test with a matrix of integers and one element as infinity (divisor is integer)
+>>> matrix_divided([[1, 2], [float('inf'), 4]], 2)
+[[0.5, 1.0], [0.0, 2.0]]
+
+# Test with a matrix of integers and one element as NaN (divisor is float)
+>>> matrix_divided([[1, 2], [float('nan'), 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+# Test with a matrix of integers and one element as infinity (divisor is float)
+>>> matrix_divided([[1, 2], [float('inf'), 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+# Test with missing one argument (should raise a TypeError)
+>>> try:
+...     matrix_divided()
+... except Exception as e:
+...     print(e)
+matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
+
+# Test with missing two arguments (should raise a TypeError)
+>>> try:
+...     matrix_divided(None)
+... except Exception as e:
+...     print(e)
+matrix must be a matrix (list of lists) of integers/floats
+
+# Test with invalid matrix (a dictionary instead of a list of lists)
+>>> try:
+...     matrix_divided({'key': 'value'}, 2)
+... except Exception as e:
+...     print(e)
+matrix must be a matrix (list of lists) of integers/floats
+
+# Test with an empty matrix
+>>> matrix_divided([], 2)
+[]
+
+# Test with a non-number divisor (like a string)
+>>> try:
+...     matrix_divided([[1, 2], [3, 4]], "string")
+... except Exception as e:
+...     print(e)
+div must be a number
