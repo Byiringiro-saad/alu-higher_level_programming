@@ -89,3 +89,12 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def display(self):
+        """
+        Prints the Rectangle instance to stdout
+        taking into account the x and y offsets.
+        """
+        print("\n" * self.y, end="")
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)

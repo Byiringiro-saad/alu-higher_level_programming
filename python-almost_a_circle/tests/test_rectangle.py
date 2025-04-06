@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+import sys
 import unittest
+from io import StringIO
 from models.rectangle import Rectangle
 
 class TestRectangle(unittest.TestCase):
@@ -151,6 +153,48 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             Rectangle(10, 2, 0, -4)
         self.assertEqual(str(e.exception), "y must be >= 0")
+
+    def setUp(self):
+        """Redirect stdout to capture print output."""
+        self.held_output = StringIO()
+        self.original_stdout = sys.stdout
+        sys.stdout = self.held_output
+
+    def tearDown(self):
+        """Reset stdout."""
+        sys.stdout = self.original_stdout
+
+    def test_display_no_offset(self):
+        """Test display without x and y offsets."""
+        r = Rectangle(2, 3)
+        r.display()
+        output = self.held_output.getvalue()
+        expected = "##\n##\n##\n"
+        self.assertEqual(output, expected)
+
+    def test_display_with_x_offset(self):
+        """Test display with x offset."""
+        r = Rectangle(2, 3, 2)
+        r.display()
+        output = self.held_output.getvalue()
+        expected = "  ##\n  ##\n  ##\n"
+        self.assertEqual(output, expected)
+
+    def test_display_with_y_offset(self):
+        """Test display with y offset."""
+        r = Rectangle(2, 3, 0, 2)
+        r.display()
+        output = self.held_output.getvalue()
+        expected = "\n\n##\n##\n##\n"
+        self.assertEqual(output, expected)
+
+    def test_display_with_x_and_y_offset(self):
+        """Test display with both x and y offsets."""
+        r = Rectangle(2, 3, 2, 2)
+        r.display()
+        output = self.held_output.getvalue()
+        expected = "\n\n  ##\n  ##\n  ##\n"
+        self.assertEqual(output, expected)
 
 
 if __name__ == "__main__":
