@@ -2,7 +2,7 @@
 """
 Base module for managing the id attribute.
 This module contains the Base class which is responsible
-for handling the management of the id attribute in the 
+for handling the management of the id attribute in the
 future classes.
 """
 
@@ -34,6 +34,7 @@ class Base:
         Args:
             id (int, optional): The id value to assign to.
         """
+
         if id is not None:
             self.id = id
         else:
