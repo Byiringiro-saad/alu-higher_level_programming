@@ -8,6 +8,13 @@ from models.rectangle import Rectangle
 class TestRectangle(unittest.TestCase):
     """Test the Rectangle class."""
 
+    def tearDown(self):
+        """Clean up the JSON file after each test."""
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
+
     def test_initialization_valid(self):
         """Test the initialization of a Rectangle instance."""
         rectangle = Rectangle(5, 10)
