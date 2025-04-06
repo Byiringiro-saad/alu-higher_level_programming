@@ -113,3 +113,15 @@ class Rectangle(Base):
         """
         for _ in range(self.height):
             print("#" * self.width)
+
+    def display(self):
+        """
+        Prints in stdout the Rectangle instance with
+        considering x and y offsets.
+        """
+        # Print vertical offset (y) first
+        for _ in range(self.y):
+            print()
+        # Then print the rectangle rows
+        for _ in range(self.height):
+            print(" " * self.x + "#" * self.width)
