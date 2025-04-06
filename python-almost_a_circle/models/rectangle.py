@@ -125,3 +125,14 @@ class Rectangle(Base):
         # Then print the rectangle rows
         for _ in range(self.height):
             print(" " * self.x + "#" * self.width)
+
+    def update(self, *args):
+        """
+        Assigns arguments to attributes in the following order:
+        1st: id, 2nd: width, 3rd: height, 4th: x, 5th: y
+        """
+        attrs = ["id", "width", "height", "x", "y"]
+
+        for i, arg in enumerate(args):
+            if i < len(attrs):
+                setattr(self, attrs[i], arg)
