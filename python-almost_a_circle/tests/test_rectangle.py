@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+import os
+import io
+import sys
 import unittest
 from models.rectangle import Rectangle
 
@@ -152,6 +155,157 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, 2, 0, -4)
         self.assertEqual(str(e.exception), "y must be >= 0")
 
+    def test_area_exists(self):
+        r = Rectangle(3, 4)
+        self.assertEqual(r.area(), 12)
+
+    def test_str_exists(self):
+        r = Rectangle(4, 6, 2, 1, 12)
+        expected = "[Rectangle] (12) 2/1 - 4/6"
+        self.assertEqual(str(r), expected)
+
+    def test_display_without_x_y(self):
+        r = Rectangle(2, 3)
+        captured = io.StringIO()
+        sys.stdout = captured
+        r.display()
+        sys.stdout = sys.__stdout__
+        expected = "##\n##\n##\n"
+        self.assertEqual(captured.getvalue(), expected)
+
+    def test_display_without_y(self):
+        r = Rectangle(2, 3, 1)
+        captured = io.StringIO()
+        sys.stdout = captured
+        r.display()
+        sys.stdout = sys.__stdout__
+        expected = " ##\n ##\n ##\n"
+        self.assertEqual(captured.getvalue(), expected)
+
+    def test_display_exists(self):
+        r = Rectangle(2, 3, 1, 1)
+        captured = io.StringIO()
+        sys.stdout = captured
+        r.display()
+        sys.stdout = sys.__stdout__
+        expected = "\n ##\n ##\n ##\n"
+        self.assertEqual(captured.getvalue(), expected)
+
+    def test_to_dictionary_exists(self):
+        r = Rectangle(10, 2, 1, 9, 5)
+        expected = {'id': 5, 'width': 10, 'height': 2, 'x': 1, 'y': 9}
+        self.assertEqual(r.to_dictionary(), expected)
+
+    def test_update_exists(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 2)
+        self.assertEqual(r.height, 3)
+        self.assertEqual(r.x, 4)
+        self.assertEqual(r.y, 5)
+
+    def test_update_id(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89)
+        self.assertEqual(r.id, 89)
+
+    def test_update_id_width(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89, 1)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 1)
+
+    def test_update_id_width_height(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89, 1, 2)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+
+    def test_update_id_width_height_x(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89, 1, 2, 3)
+        self.assertEqual(r.x, 3)
+
+    def test_update_id_width_height_x_y(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(89, 1, 2, 3, 4)
+        self.assertEqual(r.y, 4)
+
+    def test_update_kwargs_id(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(id=89)
+        self.assertEqual(r.id, 89)
+
+    def test_update_kwargs_id_width(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(id=89, width=1)
+        self.assertEqual(r.width, 1)
+
+    def test_update_kwargs_id_width_height(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(id=89, width=1, height=2)
+        self.assertEqual(r.height, 2)
+
+    def test_update_kwargs_id_width_height_x(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(id=89, width=1, height=2, x=3)
+        self.assertEqual(r.x, 3)
+
+    def test_update_kwargs_id_width_height_x_y(self):
+        r = Rectangle(10, 10, 10, 10)
+        r.update(id=89, width=1, height=2, x=3, y=4)
+        self.assertEqual(r.y, 4)
+
+    def test_create_id(self):
+        r = Rectangle.create(id=89)
+        self.assertEqual(r.id, 89)
+
+    def test_create_id_width(self):
+        r = Rectangle.create(id=89, width=1)
+        self.assertEqual(r.width, 1)
+
+    def test_create_id_width_height(self):
+        r = Rectangle.create(id=89, width=1, height=2)
+        self.assertEqual(r.height, 2)
+
+    def test_create_id_width_height_x(self):
+        r = Rectangle.create(id=89, width=1, height=2, x=3)
+        self.assertEqual(r.x, 3)
+
+    def test_create_id_width_height_x_y(self):
+        r = Rectangle.create(id=89, width=1, height=2, x=3, y=4)
+        self.assertEqual(r.y, 4)
+
+    def test_save_to_file_none(self):
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_to_file_empty_list(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+
+    def test_save_to_file_rectangle(self):
+        r = Rectangle(1, 2)
+        Rectangle.save_to_file([r])
+        with open("Rectangle.json", "r") as f:
+            self.assertIn('"width": 1', f.read())
+
+    def test_load_from_file_no_file(self):
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+        rectangles = Rectangle.load_from_file()
+        self.assertEqual(rectangles, [])
+
+    def test_load_from_file_exists(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        Rectangle.save_to_file([r1, r2])
+        rectangles = Rectangle.load_from_file()
+        self.assertEqual(len(rectangles), 2)
+        self.assertTrue(all(isinstance(r, Rectangle) for r in rectangles))
 
 if __name__ == "__main__":
     unittest.main()
