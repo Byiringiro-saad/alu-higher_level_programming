@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-import sys
 import unittest
-from io import StringIO
 from models.rectangle import Rectangle
 
 class TestRectangle(unittest.TestCase):
@@ -153,16 +151,6 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             Rectangle(10, 2, 0, -4)
         self.assertEqual(str(e.exception), "y must be >= 0")
-
-    def setUp(self):
-        """Redirect stdout to capture print output."""
-        self.held_output = StringIO()
-        self.original_stdout = sys.stdout
-        sys.stdout = self.held_output
-
-    def tearDown(self):
-        """Reset stdout."""
-        sys.stdout = self.original_stdout
 
     def test_display_no_offset(self):
         """Test display without x and y offsets."""
