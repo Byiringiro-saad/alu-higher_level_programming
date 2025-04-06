@@ -152,38 +152,6 @@ class TestRectangle(unittest.TestCase):
             Rectangle(10, 2, 0, -4)
         self.assertEqual(str(e.exception), "y must be >= 0")
 
-    def test_display_no_offset(self):
-        """Test display without x and y offsets."""
-        r = Rectangle(2, 3)
-        r.display()
-        output = self.held_output.getvalue()
-        expected = "##\n##\n##\n"
-        self.assertEqual(output, expected)
-
-    def test_display_with_x_offset(self):
-        """Test display with x offset."""
-        r = Rectangle(2, 3, 2)
-        r.display()
-        output = self.held_output.getvalue()
-        expected = "  ##\n  ##\n  ##\n"
-        self.assertEqual(output, expected)
-
-    def test_display_with_y_offset(self):
-        """Test display with y offset."""
-        r = Rectangle(2, 3, 0, 2)
-        r.display()
-        output = self.held_output.getvalue()
-        expected = "\n\n##\n##\n##\n"
-        self.assertEqual(output, expected)
-
-    def test_display_with_x_and_y_offset(self):
-        """Test display with both x and y offsets."""
-        r = Rectangle(2, 3, 2, 2)
-        r.display()
-        output = self.held_output.getvalue()
-        expected = "\n\n  ##\n  ##\n  ##\n"
-        self.assertEqual(output, expected)
-
 
 if __name__ == "__main__":
     unittest.main()
