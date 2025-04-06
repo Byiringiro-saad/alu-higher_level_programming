@@ -49,10 +49,14 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         """
-        Setter for size, updates both width
+        Setter for size, sets width and height to the
 
         Args:
-            value (int): New size for the square.
+            value (int): The new size of the square.
+
+        Raises:
+            TypeError: If value is not an integer.
+            ValueError: If value <= 0.
         """
         self.width = value
         self.height = value
