@@ -50,12 +50,12 @@ class TestRectangle(unittest.TestCase):
 
     def test_invalid_width_type(self):
         """Test invalid width (not an integer)."""
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             rectangle = Rectangle("width", 10)
 
     def test_invalid_height_type(self):
         """Test invalid height (not an integer)."""
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             rectangle = Rectangle(5, "height")
 
     def test_invalid_x_negative(self):
@@ -81,7 +81,7 @@ class TestRectangle(unittest.TestCase):
     def test_invalid_width_setter_type(self):
         """Test setting invalid width via setter (not an integer)."""
         rectangle = Rectangle(5, 10)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             rectangle.width = "invalid"
 
     def test_invalid_height_setter_negative(self):
@@ -104,12 +104,12 @@ class TestRectangle(unittest.TestCase):
 
     def test_invalid_x_type_string(self):
         """Test passing a string as x should raise ValueError"""
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             Rectangle(1, 2, "3")
 
     def test_invalid_y_type_string(self):
         """Test passing a string as y should raise ValueError"""
-        with self.assertRaises(ValueError):
+        with self.assertRaises(TypeError):
             Rectangle(1, 2, 3, "4")
 
     def test_width_type_error(self):
